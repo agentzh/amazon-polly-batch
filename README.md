@@ -10,6 +10,7 @@ Table of Contents
 * [Synopsis](#synopsis)
 * [Description](#description)
 * [Installation](#installation)
+* [TODO](#todo)
 * [Author](#author)
 * [Copyright & License](#copyright--license)
 
@@ -92,6 +93,14 @@ sudo apt-get install id3v2
 # For Fedora:
 sudo dnf install id3v2
 ```
+
+[Back to TOC](#table-of-contents)
+
+TODO
+====
+
+* Add parallel jobs support to query the Amazon Polly web services with multiple concurrent
+connections and queries.
 
 [Back to TOC](#table-of-contents)
 
