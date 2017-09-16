@@ -16,7 +16,7 @@ my @chunks;
 my $chunk = qq{<speak><prosody rate="$speed">};
 my $size = 0;
 my $paragraphs = 0;
-my $init_tags = qq{<speak><prosody rate="$speed"><break strength="x-strong"/>};
+my $init_tags = qq{<speak><prosody rate="$speed"><break time="500ms"/>};
 my $closing_tags = '</prosody></speak>';
 
 while (<>) {
@@ -39,7 +39,7 @@ while (<>) {
             s/&/&amp;/g;
             s/</&lt;/g;
             s/>/&gt;/g;
-            $chunk .= qq{<break strength="x-strong"/><emphasis level="strong">$_</emphasis><break strength="x-strong"/>};
+            $chunk .= qq{<break time="500ms"/><emphasis>$_</emphasis><break time="500ms"/>};
             $size += $len;
             $paragraphs++;
             next;
@@ -69,7 +69,7 @@ while (<>) {
 
         if ($first) {
             if ($paragraphs > 1) {
-                $chunk .= '<break strength="x-strong"/>';
+                $chunk .= '<break time="500ms"/>';
             }
             undef $first;
         }
@@ -83,9 +83,9 @@ while (<>) {
             my $mark = $1;
             my $v = $2;
             if ($v =~ /^\w+$/) {
-                qq! <emphasis level="strong">$v</emphasis>!
+                qq! <emphasis>$v</emphasis>!
             } else {
-                qq! <break strength="x-strong"/>$mark$v$mark!
+                qq! <break time="250ms"/>$mark$v$mark!
             }
         }esmg;
 
@@ -114,7 +114,7 @@ if ($chunk) {
 
 for my $chunk (@chunks) {
     $chunk =~ s/> />/g;
-    $chunk =~ s{<break strength="strong"/><break strength="x-strong"/>}{<break strength="x-strong"/>}gs;
+    $chunk =~ s{<break time="\d+m?s"/><break time="(\d+m?s)"/>}{<break time="$1"/>}gs;
     #warn "!!", bytes::length $chunk;
 }
 
