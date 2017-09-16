@@ -54,46 +54,44 @@ Installation
 
 1. Install perl and python. On Ubuntu, for example, it is as easy as
 
-```bash
-sudo apt-get install python python-pip perl
-```
+    ```bash
+    sudo apt-get install python python-pip perl
+    ```
 
-or similarly, on Fedora:
+    or similarly, on Fedora:
 
-```bash
-sudo dnf install python python-pip perl
-```
+    ```bash
+    sudo dnf install python python-pip perl
+    ```
 2. Install the AWS SDK for Python:
 
-```bash
-pip install boto3
-```
+    ```bash
+    pip install boto3
+    ```
 
-Configure the AWS credentials file in `~/.aws/credentials`.
+    Configure the AWS credentials file in `~/.aws/credentials`.
 
-```ini
-[default]
-aws_access_key_id = XXXXXXXXXXXXXXX
-aws_secret_access_key = XXXXXXXXXXXXXXXXXXXXXXXXXX
+    ```ini
+    [default]
+    aws_access_key_id = XXXXXXXXXXXXXXX
+    aws_secret_access_key = XXXXXXXXXXXXXXXXXXXXXXXXXX
 
-[default]
-region=us-west-2
-```
+    [default]
+    region=us-west-2
+    ```
 
-You need to find out the access key ID and secret access key for your AWS account. Also please note that
-not every AWS region provides the Polly service. Check out the AWS official documentation on what regions
-do. For example, `us-west-2` does provide the Polly service while `us-west-1` doesn't.
+    You need to find out the access key ID and secret access key for your AWS account. Also please note that
+    not every AWS region provides the Polly service. Check out the AWS official documentation on what regions
+    do. For example, `us-west-2` does provide the Polly service while `us-west-1` doesn't.
+3. Install `id3v2` if you want to modify the metadata of the resulting MP3 files:
 
-If you want to modify the metadata of the resulting MP3 files, then you can also install
-the `id3v2` command-line utility like this:
+    ```bash
+    # For Ubuntu/Debian:
+    sudo apt-get install id3v2
 
-```bash
-# For Ubuntu/Debian:
-sudo apt-get install id3v2
-
-# For Fedora:
-sudo dnf install id3v2
-```
+    # For Fedora:
+    sudo dnf install id3v2
+    ```
 
 [Back to TOC](#table-of-contents)
 
