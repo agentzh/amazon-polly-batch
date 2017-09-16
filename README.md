@@ -29,7 +29,8 @@ Synopsis
 vi my-book-new.txt
 
 # Step 4: generate SSML source file, my-book-new.ssml,
-# from the tweaked and edited .txt file (using the slow voice speed):
+# from the tweaked and edited .txt file (using the "slow" voice speed,
+# other possible speech rates are "x-slow", "medium", "fast", and "x-fast"):
 ./txt2ssml.pl -s slow my-book-new.txt > my-book-new.ssml
 
 # Step 5: generate an MP3 file from the `.ssml` file:
