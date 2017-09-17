@@ -39,7 +39,7 @@ vi my-book-new.txt
 # Step 6: (optional) set mp3 file metadata, need to install id3v2 first:
 id3v2 -A 'Album Name' -t 'Song Title' -a 'Artist Name' -y 2017 -g 28 my-book.mp3
 
-# Step 7: let's display the .mp3 file!
+# Step 7: let's play the .mp3 file!
 ```
 
 Description
@@ -48,6 +48,10 @@ Description
 Amazon Polly is a text-to-speech service API which gives human-like voices of good quality. This
 toolkit makes it easy to convert large volumes of text (like e-books) into audio books of the MP3
 format.
+
+Below is a sample MP3 file generated from 2 small book sections:
+
+http://openresty.org/download/audio/ib4.mp3
 
 Installation
 ============
