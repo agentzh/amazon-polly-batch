@@ -16,4 +16,6 @@ $s =~ s/\r\n+Contents\n+\r.*?\r\n+(INTRODUCTION\n\n)/\r\n\n$1/ms;
 $s =~ s/ ([a-z]+)(?:-|\x{c2}\x{ad}) +([a-z]+[ ,.;?!])/ $1$2/msg;
 #$s =~ s/ technologi­ cal / technological /msg;
 $s =~ s/\([^).\n]*?[a-z][^).\n]*?[a-z][^).\n]*?\)//msg;
+$s =~ s/[ \t]{2,}/ /gs;
+$s =~ s/([a-z])[ \t]+,/$1,/gs;
 print $s;
