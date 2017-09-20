@@ -79,7 +79,7 @@ while (<>) {
         $sentence =~ s/>/\&gt;/g;
         #$sentence =~ s{N`([A-Za-z][^`]*?[A-Za-z])`}{<emphasis level="strong">$1</emphasis>}smg;
 
-        $sentence =~ s{ (["'])(.*?)\1}{
+        $sentence =~ s{(?<!the) (["'])(.*?)\1}{
             my $mark = $1;
             my $v = $2;
             if ($v =~ /^\w+$/) {
