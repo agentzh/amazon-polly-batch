@@ -18,8 +18,9 @@ Synopsis
 ========
 
 ```bash
-# Step 1: generate .docx from .pdf files using Adobe Export.
-# Step 2: generate .txt from .docx from Microsoft Word.
+# Step 1: generate .docx from .pdf files using Adobe Export (which supports OCI).
+# Step 2: generate .txt from .docx from Microsoft Word (ensure you use LF line breaks
+# and UTF-8 encoding in the Word export configuration).
 
 # Step 3: use tweak-txt.pl to tweak the .txt file automatically:
 
@@ -48,6 +49,15 @@ Description
 Amazon Polly is a text-to-speech service API which gives human-like voices of good quality. This
 toolkit makes it easy to convert large volumes of text (like e-books) into audio books of the MP3
 format.
+
+The input plain text file for the `txt2ssml.pl` tool should use the following convention:
+
+Each paragraph should be in its own separate line, no line breaks should be inserted in the middle
+of a paragraph.
+
+The `txt2ssml.pl` tool treats each non-empty line as a paragraph. A short-enough paragraph is treated
+as a title. Empty lines are ignored and removed. Leading spaces and trailing spaces in each paragraph
+are automatically removed. Successive spaces are squeezed into a single space.
 
 Below is a sample MP3 file generated from 2 small book sections:
 
