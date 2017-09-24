@@ -53,7 +53,7 @@ while (<>) {
     $paragraphs++;
 
     my $first = 1;
-    while (/(.*?[.?;:]['")]*)/gc) {
+    while (/(.*?[.?!;:]['")]*)/gc) {
         my $sentence = $1;
         #warn $sentence;
         my $len = bytes::length $sentence;
@@ -78,8 +78,9 @@ while (<>) {
         $sentence =~ s/</\&lt;/g;
         $sentence =~ s/>/\&gt;/g;
         #$sentence =~ s{N`([A-Za-z][^`]*?[A-Za-z])`}{<emphasis level="strong">$1</emphasis>}smg;
+        $sentence =~ s{VB`([A-Za-z][^`]*?[A-Za-z])`}{<w role="amazon:VB">$1</w>}smg;
 
-        $sentence =~ s{(?<!the) (["'])(.*?)\1}{
+        $sentence =~ s{(?<!the|and) (["'])(.*?)\1}{
             my $mark = $1;
             my $v = $2;
             if ($v =~ /^\w+$/) {
