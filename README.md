@@ -61,7 +61,9 @@ are automatically removed. Successive spaces are squeezed into a single space.
 
 The `txt2ssml.pl` tool understands the following special marks:
 
-* ``VB`objects` `` interpretes the word `objects` as a simpel-tense verb and thus adjust the pronunciation accordingly.
+* ``VB`objects` `` interpretes the word `objects` as a present simple tense verb and thus adjust the pronunciation accordingly.
+* ``VBD`read` `` interpretes the word `read` as a past tense or past participle verb and thus adjust the pronunciation accordingly.
+* ``N`construct` `` interpretes the construct as an alternative meaning (the noun form, for example).
 * `Will` interprets the word `will` as a noun and thus change the pronunciation accordingly.
 
 Below is a sample MP3 file generated from 2 small book sections:

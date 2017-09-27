@@ -99,6 +99,8 @@ sub process_sentence ($$) {
     $sentence =~ s/>/\&gt;/g;
     #$sentence =~ s{N`([A-Za-z][^`]*?[A-Za-z])`}{<emphasis level="strong">$1</emphasis>}smg;
     $sentence =~ s{VB`([A-Za-z][^`]*?[A-Za-z])`}{<w role="amazon:VB">$1</w>}smg;
+    $sentence =~ s{VBD`([A-Za-z][^`]*?[A-Za-z])`}{<w role="amazon:VBD">$1</w>}smg;
+    $sentence =~ s{N`([A-Za-z][^`]*?[A-Za-z])`}{<w role="amazon:SENSE_1">$1</w>}smg;
 
     $sentence =~ s{(?<!the|and) (["'])(.*?)\1}{
         my $mark = $1;
@@ -113,7 +115,7 @@ sub process_sentence ($$) {
     $sentence =~ s{\bcrosslegged\b}{<phoneme alphabet="x-sampa" ph="kr\\OslEgd">crosslegged</phoneme>}gsm;
     $sentence =~ s{\bKuru\b}{<phoneme alphabet="x-sampa" ph="ku%r\\u">Kuru</phoneme>}gsm;
     $sentence =~ s{\bWill\b}{<phoneme alphabet="x-sampa" ph="%wil">Will</phoneme>}gsm;
-    $sentence =~ s{\bIR\b}{<prosody rate="x-slow">I R</prosody>}gsm;
+    $sentence =~ s{\b(?:IR|ir)\b}{<prosody rate="x-slow">I R</prosody>}gsm;
 
     if ($len <= 1500) {
         $chunk .= $sentence;
