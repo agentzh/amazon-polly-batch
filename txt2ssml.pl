@@ -113,6 +113,7 @@ sub process_sentence ($$) {
     $sentence =~ s{\bcrosslegged\b}{<phoneme alphabet="x-sampa" ph="kr\\OslEgd">crosslegged</phoneme>}gsm;
     $sentence =~ s{\bKuru\b}{<phoneme alphabet="x-sampa" ph="ku%r\\u">Kuru</phoneme>}gsm;
     $sentence =~ s{\bWill\b}{<phoneme alphabet="x-sampa" ph="%wil">Will</phoneme>}gsm;
+    $sentence =~ s{\bIR\b}{<prosody rate="x-slow">I R</prosody>}gsm;
 
     if ($len <= 1500) {
         $chunk .= $sentence;
