@@ -102,7 +102,7 @@ sub process_sentence ($$) {
     $sentence =~ s{VBD`([A-Za-z][^`]*?[A-Za-z])`}{<w role="amazon:VBD">$1</w>}smg;
     $sentence =~ s{N`([A-Za-z][^`]*?[A-Za-z])`}{<w role="amazon:SENSE_1">$1</w>}smg;
 
-    $sentence =~ s{(?<!the|and) (["'])(.*?)\1}{
+    $sentence =~ s{(?<=[,:"']) (["'])(.*?)\1}{
         my $mark = $1;
         my $v = $2;
         if ($v =~ /^\w+$/) {
@@ -116,6 +116,8 @@ sub process_sentence ($$) {
     $sentence =~ s{\bKuru\b}{<phoneme alphabet="x-sampa" ph="ku%r\\u">Kuru</phoneme>}gsm;
     $sentence =~ s{\bWill\b}{<phoneme alphabet="x-sampa" ph="%wil">Will</phoneme>}gsm;
     $sentence =~ s{\b(?:IR|ir)\b}{<prosody rate="x-slow">I R</prosody>}gsm;
+    $sentence =~ s{\b(?:ssa|SSA)\b}{<prosody rate="medium">S S A</prosody>}gsm;
+    $sentence =~ s{\bconcentrated\b}{<phoneme alphabet="x-sampa" ph="%kAnsntSeItId">concentrated</phoneme>}gsm;
 
     if ($len <= 1500) {
         $chunk .= $sentence;
