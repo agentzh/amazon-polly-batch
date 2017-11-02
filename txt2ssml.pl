@@ -58,7 +58,7 @@ while (<>) {
     $paragraphs++;
 
     my $first = 1;
-    while (/(.*?[.?!;:]['")]*)/gc) {
+    while (/(.*?[.?!;:]+['")]*)/gc) {
         process_sentence($1, \$first);
     }
 
