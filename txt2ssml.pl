@@ -28,7 +28,7 @@ while (<>) {
 
     #warn "line: $_";
 
-    if (/^[A-Z][^.,!?]+[a-z]$/) {
+    if (/^[A-Z][^.,!?]+[A-Za-z]$/) {
         my $len = bytes::length $_;
         if ($size + $len > 1500) {
             $chunk .= $closing_tags;
@@ -44,7 +44,7 @@ while (<>) {
             s/&/&amp;/g;
             s/</&lt;/g;
             s/>/&gt;/g;
-            $chunk .= qq{<break time="500ms"/><emphasis>$_</emphasis><break time="500ms"/>};
+            $chunk .= qq{<break time="500ms"/><emphasis>$_.</emphasis><break time="500ms"/>};
             $size += $len;
             $paragraphs++;
             next;
