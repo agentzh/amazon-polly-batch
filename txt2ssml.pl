@@ -12,7 +12,7 @@ sub process_sentence ($$);
 my %opts;
 getopts("s:", \%opts) or die "Usage: $0 [-s SPEED] TXT-FILE\n";
 
-my $speed = $opts{speed} // 'slow';
+my $speed = $opts{s} // 'slow';
 
 my @chunks;
 my $chunk = qq{<speak><prosody rate="$speed">};
