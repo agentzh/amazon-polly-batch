@@ -139,4 +139,6 @@ for my $chunk (@chunks) {
     #warn "!!", bytes::length $chunk;
 }
 
+$chunks[-1] =~ s{(</speak>)}{<break time="1500ms"/>$1};
+
 print join "\n", @chunks;
