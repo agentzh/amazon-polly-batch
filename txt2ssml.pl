@@ -18,7 +18,7 @@ my @chunks;
 my $chunk = qq{<speak><prosody rate="$speed">};
 my $size = 0;
 my $paragraphs = 0;
-my $init_tags = qq{<speak><prosody rate="$speed"><break time="500ms"/>};
+my $init_tags = qq{<speak><prosody rate="$speed"><break time="250ms"/>};
 my $closing_tags = '</prosody></speak>';
 
 while (<>) {
@@ -44,7 +44,7 @@ while (<>) {
             s/&/&amp;/g;
             s/</&lt;/g;
             s/>/&gt;/g;
-            $chunk .= qq{<break time="500ms"/><emphasis>$_.</emphasis><break time="500ms"/>};
+            $chunk .= qq{<break time="250ms"/><emphasis>$_.</emphasis><break time="250ms"/>};
             $size += $len;
             $paragraphs++;
             next;
@@ -89,7 +89,7 @@ sub process_sentence ($$) {
 
     if ($$rfirst) {
         if ($paragraphs > 1) {
-            $chunk .= '<break time="500ms"/>';
+            $chunk .= '<break time="250ms"/>';
         }
         $$rfirst = 0;
     }
@@ -118,6 +118,7 @@ sub process_sentence ($$) {
     $sentence =~ s{\b(?:IR|ir)\b}{<prosody rate="x-slow">I R</prosody>}gsm;
     $sentence =~ s{\b(?:ssa|SSA)\b}{<prosody rate="medium">S S A</prosody>}gsm;
     $sentence =~ s{\bconcentrated\b}{<phoneme alphabet="x-sampa" ph="%kAnsntSeItId">concentrated</phoneme>}gsm;
+    $sentence =~ s{((?:\b[a-zA-Z]+\s*)+)}{<lang xml:lang="en-US">$1</lang>}gsm;
 
     if ($len <= 1500) {
         $chunk .= $sentence;
@@ -139,6 +140,6 @@ for my $chunk (@chunks) {
     #warn "!!", bytes::length $chunk;
 }
 
-$chunks[-1] =~ s{(</speak>)}{<break time="1500ms"/>$1};
+$chunks[-1] =~ s{(</speak>)}{<break time="250ms"/>$1};
 
 print join "\n", @chunks;

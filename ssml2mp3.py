@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 from boto3 import Session
 from botocore.exceptions import BotoCoreError, ClientError
@@ -15,6 +15,8 @@ parser.add_argument('-o', metavar='MP3-FILE', type=str, default="a.mp3",
                     help='the output .mp3 file name')
 parser.add_argument('--voice', metavar='VOICE', default="Salli",
                     help='the AWS Polly voice name. default to Salli')
+parser.add_argument('--engine', metavar='ENGINE', default="standard",
+                    help='the AWS Polly engine name. default to standard')
 parser.add_argument('infile', metavar='SSML-FILE', type=str,
                     help='the SSML input file')
 
@@ -27,23 +29,26 @@ outfile = args.o
 session = Session() #profile_name="adminuser")
 polly = session.client("polly")
 
-voice = args.voice or "Salli"
+voice = args.voice
+engine = args.engine
 #voice = "Joanna"
 
 infile = args.infile
 index = 1
 
 pieces = []
-with open(infile, "rb") as f:
+with open(infile, "r") as f:
     pieces = [l for l in (line.strip() for line in f) if l]
 
+#pieces = ["<speak><prosody rate=\"medium\">Mary had a little lamb.</prosody></speak>"];
 with open(outfile, "wb") as out:
     i = index
     for piece in pieces:
-        print "piece %d: %s" % (i, piece)
+        print("piece %d: %s" % (i, piece))
+        #piece = "<speak>Mary had a little lamb.</speak>";
         try:
             # Request speech synthesis
-            response = polly.synthesize_speech(Text=piece, TextType="ssml", OutputFormat="mp3",
+            response = polly.synthesize_speech(Engine=engine, Text=piece, TextType="ssml", OutputFormat="mp3",
                  VoiceId=voice)
         except (BotoCoreError, ClientError) as error:
             # The service returned an error, exit gracefully
