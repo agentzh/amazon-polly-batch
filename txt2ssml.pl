@@ -58,7 +58,7 @@ while (<>) {
     $paragraphs++;
 
     my $first = 1;
-    while (/(.*?[.?!;:]+['")]*)/gc) {
+    while (/(.*?[.?!;:]+['")]*)(?:\s+|\z)/gc) {
         process_sentence($1, \$first);
     }
 
@@ -112,13 +112,17 @@ sub process_sentence ($$) {
         }
     }esmg;
 
+    #warn "sentence: $sentence";
+    $sentence =~ s{\bnginx\.conf\b}{nginx<phoneme alphabet="x-sampa" ph="&quot;dQt">.<\/phoneme>conf }gis;
+    $sentence =~ s{\bconf\b}{<phoneme alphabet="x-sampa" ph="&quot;kQnf">conf<\/phoneme> }gis;
+    $sentence =~ s{\bnginx\b}{<phoneme alphabet="x-sampa" ph="\%EndZ\@n&quot;Eks">nginx<\/phoneme>}gis;
     $sentence =~ s{\bcrosslegged\b}{<phoneme alphabet="x-sampa" ph="kr\\OslEgd">crosslegged</phoneme>}gsm;
     $sentence =~ s{\bKuru\b}{<phoneme alphabet="x-sampa" ph="ku%r\\u">Kuru</phoneme>}gsm;
     $sentence =~ s{\bWill\b}{<phoneme alphabet="x-sampa" ph="%wil">Will</phoneme>}gsm;
     $sentence =~ s{\b(?:IR|ir)\b}{<prosody rate="x-slow">I R</prosody>}gsm;
     $sentence =~ s{\b(?:ssa|SSA)\b}{<prosody rate="medium">S S A</prosody>}gsm;
     $sentence =~ s{\bconcentrated\b}{<phoneme alphabet="x-sampa" ph="%kAnsntSeItId">concentrated</phoneme>}gsm;
-    $sentence =~ s{((?:\b[a-zA-Z]+\s*)+)}{<lang xml:lang="en-US">$1</lang>}gsm;
+    #$sentence =~ s{((?:\b[a-zA-Z]+\s*)+)}{<lang xml:lang="en-US">$1</lang>}gsm;
 
     if ($len <= 1500) {
         $chunk .= $sentence;
