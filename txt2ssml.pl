@@ -58,7 +58,7 @@ while (<>) {
     $paragraphs++;
 
     my $first = 1;
-    while (/(.*?[.?!;:]+['")]*)(?:\s+|\z)/gc) {
+    while (/(.*?[.?!;:]+['")]*)(?:\s+|\z)/gcsm) {
         process_sentence($1, \$first);
     }
 
@@ -112,9 +112,11 @@ sub process_sentence ($$) {
         }
     }esmg;
 
-    #warn "sentence: $sentence";
+    #warn "sentence: [$sentence]";
     $sentence =~ s{\bnginx\.conf\b}{nginx<phoneme alphabet="x-sampa" ph="&quot;dQt">.<\/phoneme>conf }gis;
-    $sentence =~ s{\bconf\b}{<phoneme alphabet="x-sampa" ph="&quot;kQnf">conf<\/phoneme> }gis;
+    $sentence =~ s{\bInc\b}{<phoneme alphabet="x-sampa" ph="&quot;Ink">Inc<\/phoneme>}gis;
+    $sentence =~ s{\bconf\b}{<phoneme alphabet="x-sampa" ph="&quot;kQnf">conf<\/phoneme>}gis;
+    $sentence =~ s{\bvim\b}{<phoneme alphabet="x-sampa" ph="&quot;vi%aI%Em">vim<\/phoneme>}gis;
     $sentence =~ s{\bnginx\b}{<phoneme alphabet="x-sampa" ph="\%EndZ\@n&quot;Eks">nginx<\/phoneme>}gis;
     $sentence =~ s{\bcrosslegged\b}{<phoneme alphabet="x-sampa" ph="kr\\OslEgd">crosslegged</phoneme>}gsm;
     $sentence =~ s{\bKuru\b}{<phoneme alphabet="x-sampa" ph="ku%r\\u">Kuru</phoneme>}gsm;
@@ -125,7 +127,7 @@ sub process_sentence ($$) {
     #$sentence =~ s{((?:\b[a-zA-Z]+\s*)+)}{<lang xml:lang="en-US">$1</lang>}gsm;
 
     if ($len <= 1500) {
-        $chunk .= $sentence;
+        $chunk .= " $sentence";
         $size += $len;
 
     } else {
@@ -139,7 +141,7 @@ if ($chunk) {
 }
 
 for my $chunk (@chunks) {
-    $chunk =~ s/> />/g;
+    #$chunk =~ s/> />/g;
     $chunk =~ s{<break time="\d+m?s"/><break time="(\d+m?s)"/>}{<break time="$1"/>}gs;
     #warn "!!", bytes::length $chunk;
 }
