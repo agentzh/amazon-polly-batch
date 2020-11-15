@@ -113,6 +113,8 @@ sub process_sentence ($$) {
     }esmg;
 
     #warn "sentence: [$sentence]";
+    $sentence =~ s!\bMIME\b! <phoneme alphabet="x-sampa" ph="&quot;Em%aI%Em%i">/<\/phoneme> !gis;
+    $sentence =~ s! / ! <phoneme alphabet="x-sampa" ph="&quot;sl{S">/<\/phoneme> !gis;
     $sentence =~ s{\bnginx\.conf\b}{nginx<phoneme alphabet="x-sampa" ph="&quot;dQt">.<\/phoneme>conf }gis;
     $sentence =~ s{\bInc\b}{<phoneme alphabet="x-sampa" ph="&quot;Ink">Inc<\/phoneme>}gis;
     $sentence =~ s{\bconf\b}{<phoneme alphabet="x-sampa" ph="&quot;kQnf">conf<\/phoneme>}gis;
