@@ -44,7 +44,7 @@ while (<>) {
             s/&/&amp;/g;
             s/</&lt;/g;
             s/>/&gt;/g;
-            $chunk .= qq{<break time="250ms"/><emphasis>$_.</emphasis><break time="250ms"/>};
+            $chunk .= qq{<break time="250ms"/>$_.<break time="250ms"/>};
             $size += $len;
             $paragraphs++;
             next;
@@ -114,12 +114,19 @@ sub process_sentence ($$) {
 
     #warn "sentence: [$sentence]";
     $sentence =~ s/([A-Za-z])_([A-Za-z\d])/$1 $2/g;
-    $sentence =~ s!\bMIME\b! <phoneme alphabet="x-sampa" ph="&quot;Em%aI%Em%i">/<\/phoneme> !gis;
+    $sentence =~ s!\bDIV\b! <phoneme alphabet="x-sampa" ph="&quot;di%aI%vi">DIV<\/phoneme> !gis;
+    $sentence =~ s!\bMIME\b! <phoneme alphabet="x-sampa" ph="&quot;Em%aI%Em%i">MIME<\/phoneme> !gis;
     $sentence =~ s! / ! <phoneme alphabet="x-sampa" ph="&quot;sl{S">/<\/phoneme> !gis;
     $sentence =~ s{\bnginx\.conf\b}{nginx<phoneme alphabet="x-sampa" ph="&quot;dQt">.<\/phoneme>conf }gis;
     $sentence =~ s{\bInc\b}{<phoneme alphabet="x-sampa" ph="&quot;Ink">Inc<\/phoneme>}gis;
     $sentence =~ s{\bconf\b}{<phoneme alphabet="x-sampa" ph="&quot;kQnf">conf<\/phoneme>}gis;
     $sentence =~ s{\bvim\b}{<phoneme alphabet="x-sampa" ph="&quot;vi%aI%Em">vim<\/phoneme>}gis;
+    $sentence =~ s{\`-s\`}{<phoneme alphabet="x-sampa" ph="%d\{S.&quot;Es">`-s`<\/phoneme>}gis;
+    $sentence =~ s{\`-p\`}{<phoneme alphabet="x-sampa" ph="%d\{S.&quot;pi">`-p`<\/phoneme>}gis;
+    $sentence =~ s{\`-t\`}{<phoneme alphabet="x-sampa" ph="%d\{S.&quot;ti">`-t`<\/phoneme>}gis;
+    $sentence =~ s{\`-h\`}{<phoneme alphabet="x-sampa" ph="%d\{S.&quot;eItS">`-h`<\/phoneme>}gis;
+    $sentence =~ s{\`restydoc\`}{<phoneme alphabet="x-sampa" ph="%r\\EstI.&quot;dOk">`restydoc`<\/phoneme>}gis;
+    $sentence =~ s{\bsudo\b}{<phoneme alphabet="x-sampa" ph="%sU&quot;dU">sudo<\/phoneme>}gis;
     $sentence =~ s{\bnginx\b}{<phoneme alphabet="x-sampa" ph="\%EndZ\@n&quot;Eks">nginx<\/phoneme>}gis;
     $sentence =~ s{\bcrosslegged\b}{<phoneme alphabet="x-sampa" ph="kr\\OslEgd">crosslegged</phoneme>}gsm;
     $sentence =~ s{\bKuru\b}{<phoneme alphabet="x-sampa" ph="ku%r\\u">Kuru</phoneme>}gsm;
