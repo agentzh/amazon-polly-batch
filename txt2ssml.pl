@@ -125,6 +125,7 @@ sub process_sentence ($$) {
     $sentence =~ s{\`-p\`}{<phoneme alphabet="x-sampa" ph="%d\{S.&quot;pi">`-p`<\/phoneme>}gis;
     $sentence =~ s{\`-t\`}{<phoneme alphabet="x-sampa" ph="%d\{S.&quot;ti">`-t`<\/phoneme>}gis;
     $sentence =~ s{\`-h\`}{<phoneme alphabet="x-sampa" ph="%d\{S.&quot;eItS">`-h`<\/phoneme>}gis;
+    $sentence =~ s{\`-I\`}{<phoneme alphabet="x-sampa" ph="%d\{S.&quot;aI">`-h`<\/phoneme>}gis;
     $sentence =~ s{\`restydoc\`}{<phoneme alphabet="x-sampa" ph="%r\\EstI.&quot;dOk">`restydoc`<\/phoneme>}gis;
     $sentence =~ s{\bsudo\b}{<phoneme alphabet="x-sampa" ph="%sU&quot;dU">sudo<\/phoneme>}gis;
     $sentence =~ s{\bnginx\b}{<phoneme alphabet="x-sampa" ph="\%EndZ\@n&quot;Eks">nginx<\/phoneme>}gis;
