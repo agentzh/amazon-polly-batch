@@ -121,6 +121,7 @@ sub process_sentence ($$) {
     $sentence =~ s{\bInc\b}{<phoneme alphabet="x-sampa" ph="&quot;Ink">Inc<\/phoneme>}gis;
     $sentence =~ s{\bconf\b}{<phoneme alphabet="x-sampa" ph="&quot;kQnf">conf<\/phoneme>}gis;
     $sentence =~ s{\bvim\b}{<phoneme alphabet="x-sampa" ph="&quot;vi%aI%Em">vim<\/phoneme>}gis;
+    $sentence =~ s{/etc/}{<phoneme alphabet="x-sampa" ph="&quot;i&quot;ti&quot;si">/etc/<\/phoneme>}gis;
     $sentence =~ s{\`-s\`}{<phoneme alphabet="x-sampa" ph="%d\{S.&quot;Es">`-s`<\/phoneme>}gis;
     $sentence =~ s{\`-p\`}{<phoneme alphabet="x-sampa" ph="%d\{S.&quot;pi">`-p`<\/phoneme>}gis;
     $sentence =~ s{\`-t\`}{<phoneme alphabet="x-sampa" ph="%d\{S.&quot;ti">`-t`<\/phoneme>}gis;
